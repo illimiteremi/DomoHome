@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bonjour et bienvenue sur Domo Home !</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.5.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.5.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.5.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.5.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.5.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div  align="center" id="message">
+		<h2>Configuration Domo Home</h2>
+		<img  src="images/domo_baniere.jpg" />
+		<p></p>
+	    <form>
+	      <div>
+	      	<input id="jeedomURl" type="text" placeholder="Url de votre Jeedom">
+	      </div>
+	      <p></p>
+	      <div>
+	      	<input id="apiKey" type="password" placeholder="Clé API">
+	      </div>
+	      <p></p>
+	      <div>
+	      	<button id="sign-in">Enregistrer</button>
+			<button id="log_in" >Quitter</button>
+	      </div>
+	    </form>
+    </div>
+    <p id="load">Domo Home - illimiteremi</p>
+
+      <!--Configure firebase-->
+    <script>
+       var config = {
+		apiKey: "AIzaSyDjanBCRZCN3iQP_Ub4454tQnf46Us-FIU",
+		authDomain: "domo-home-illimiteremi.firebaseapp.com",
+		databaseURL: "https://domo-home-illimiteremi.firebaseio.com",
+		projectId: "domo-home-illimiteremi",
+		storageBucket: "domo-home-illimiteremi.appspot.com",
+		messagingSenderId: "455927581949"
+	  };
+      firebase.initializeApp(config);
+      // Get a reference to the database service
+     var database = firebase.database();
+
+    </script>
+
+    <script>
+       document.querySelector('#sign-in').addEventListener('click', function(e) {
+	     e.preventDefault();
+	     e.stopPropagation();
+	     var email     = document.querySelector('#email').value;
+	     var password  = document.querySelector('#password').value;
+	     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  alert(errorCode + " - " + errorMessage);
+   	     });
+	});
+    </script>
+  </body>
+</html>
